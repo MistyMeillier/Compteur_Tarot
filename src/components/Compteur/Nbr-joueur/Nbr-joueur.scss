@@ -1,0 +1,31 @@
+@import '../../../variables.scss';
+
+.outer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+}
+
+.playerNbrTitle {
+    position: absolute;
+    top: 110px;
+    font-family: 'Comic Sans ms';
+    color: aliceblue;
+}
+
+.btnP {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    background-color: #97309b;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+
+    &__txt {
+        font-family: 'Comic Sans ms';
+        font-size: 18px;
+    }
+}
