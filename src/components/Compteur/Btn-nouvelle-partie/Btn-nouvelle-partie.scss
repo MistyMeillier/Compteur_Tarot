@@ -1,0 +1,18 @@
+@import '../../../variables.scss';
+
+.btn {
+    height: 80px;
+    width: 250px;
+    border-radius: 15px;
+    background-color: #97309b;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    cursor: pointer;
+
+    &__txt {
+        font-family: 'Comic Sans ms';
+        font-size: 18px;
+    }
+    
+}
