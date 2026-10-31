@@ -1,12 +1,13 @@
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { motion, scale } from "framer-motion"
+import { setPlayerList } from '../../../redux/compteurSlice'
 import React from 'react'
 import './List-joueur.scss'
 
 function ListJoueur() {
-    const initialList = []
+    const dispatch = useDispatch()
 
-    const [list, setList] = React.useState(initialList)
+    const [list, setList] = React.useState(useSelector(state => state.compteur.playerList))
     const [name, setName] = React.useState('');
     const playerNbr = useSelector(state => state.compteur.players)
 
@@ -21,23 +22,29 @@ function ListJoueur() {
 
     const handleChange = (event) => {
         setName(event.target.value)
-        console.log(name)
     }
 
     const handleAdd = () => {
         const newList = list.concat({ name })
-        console.log(name)
         setList(newList)
+        dispatch(setPlayerList({ name }))
+        setName('')
+    }
+
+    const handleKeyDown = (event) => {
+        if (event.key === 'Enter') {
+            handleAdd()
+        }
     }
 
     return <div className='outerListPlayer'>
         { list.length < playerNbr ? 
             <div className='addNameOuter'>
                 <div className='addNameOuter__box'>
-                    <input className='addNameOuter__box__input' type='text' value={name} onChange={handleChange}/>
+                    <input className='addNameOuter__box__input' onKeyDown={handleKeyDown} type='text' value={name} onChange={handleChange}/>
                     <motion.div className='addNameOuter__box__button' onClick={handleAdd} whileHover={Hover} whileTap={Tap}>Ajouter</motion.div> 
                 </div>   
-            </div>: null 
+            </div>: null
         }
         <div className='outerListPlayer__nameList'>
             { list.map((name, index) => (
